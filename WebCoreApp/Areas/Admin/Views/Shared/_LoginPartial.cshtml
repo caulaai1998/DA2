@@ -1,0 +1,28 @@
+@using Microsoft.AspNetCore.Identity
+@using WebCoreApp.Models
+@using WebCoreApp.Extensions
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
+<li class="dropdown">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <span class="profile-ava">
+            <img alt="" src="@User.GetSpecificClaim("Avatar")">
+        </span>
+        <span class="username">@User.GetSpecificClaim("FullName")</span>
+        <b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu extended logout">
+        <li class="eborder-top">
+            <a href="#"><i class="icon_profile"></i> My Profile</a>
+        </li>
+        <li>
+            <a href="#"><i class="fa fa-cog"></i>Setting</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit()"><i class="fa fa-power-off m-r-5 m-l-5"></i> Log out</a>
+            <form action="/Admin/Account/Logout" method="post" id="logoutForm"></form>
+        </li>
+    </ul>
+</li>

@@ -1,0 +1,32 @@
+﻿@model List<FunctionViewModel>
+<div id="sidebar" class="nav-collapse " style="width:190px;">
+    <!-- sidebar menu start-->
+    <ul class="sidebar-menu">
+        <li class="active">
+            <a class="" href="/Admin/Home/Index">
+                <i class="icon_house_alt"></i>
+                <span>Home</span>
+            </a>
+        </li>
+        @foreach (var item in Model.Where(x => string.IsNullOrEmpty(x.ParentId)))
+        {
+            <li class="sub-menu">
+                <a href="javascript:;" class="">
+
+                    <span>@item.Name</span>
+                    <span class="menu-arrow arrow_carrot-right"></span>
+                </a>
+                @if (Model.Any(x => x.ParentId == item.Id))
+                {
+                    <ul class="sub">
+                        @foreach (var jitem in Model.Where(x => x.ParentId == item.Id))
+                        {
+                            <li><a class="" href="@jitem.URL">@jitem.Name</a></li>}
+
+                    </ul>
+                }
+            </li>
+        }
+    </ul>
+    <!-- sidebar menu end-->
+</div>
