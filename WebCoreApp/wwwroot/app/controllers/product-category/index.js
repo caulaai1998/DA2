@@ -10,8 +10,7 @@
             lang: 'en',
             rules: {
                 txtNameM: { required: true },
-                txtOrderM: { number: true },
-                txtHomeOrderM: { number: true }
+                  txtOrderM: { number: true }
             }
         });
 
@@ -22,6 +21,7 @@
         $('#btnSelectImg').on('click', function () {
             $('#fileInputImage').click();
         });
+
         $("#fileInputImage").on('change', function () {
             var fileUpload = $(this).get(0);
             var files = fileUpload.files;
@@ -45,6 +45,7 @@
                 }
             });
         });
+
         $('body').on('click', '#btnEdit', function (e) {
             e.preventDefault();
             var that = $('#hidIdM').val();

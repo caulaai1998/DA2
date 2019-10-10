@@ -52,9 +52,9 @@ namespace WebCoreApp.Areas.Admin.Controllers
                 }
                 _productCategoryService.Save();
                 return new OkObjectResult(productVm);
-
             }
         }
+
 
         [HttpPost]
         public IActionResult Delete(int id)
