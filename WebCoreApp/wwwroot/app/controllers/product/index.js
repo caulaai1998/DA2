@@ -8,6 +8,7 @@
         loadData();
         registerEvents();
         registerControls();
+
         quantityManagement.initialize();
         imageManagement.initialize();
         wholePriceManagement.initialize();
@@ -22,6 +23,8 @@
             rules: {
                 txtNameM: { required: true },
                 ddlCategoryIdM: { required: true },
+                ddlAuthorIdM: { required: true },
+                ddlPublisherIdM: { required: true },
                 txtPriceM: {
                     required: true,
                     number: true
@@ -48,7 +51,10 @@
         $("#btnCreate").on('click', function () {
             resetFormMaintainance();
             initTreeDropDownCategory();
+            initTreeDropDownAuthor();
+            initTreeDropDownPublisher();
             $('#modal-add-edit').modal('show');
+
 
         });
 
@@ -97,6 +103,8 @@
                     $('#hidDateCreated').val(data.DateCreated)
                     $('#txtNameM').val(data.Name);
                     initTreeDropDownCategory(data.CategoryId);
+                    initTreeDropDownAuthor(data.AuthorId);
+                    initTreeDropDownPublisher(data.PublisherId);
 
                     $('#txtDescM').val(data.Description);
                     $('#txtUnitM').val(data.Unit);
@@ -161,6 +169,8 @@
                 var name = $('#txtNameM').val();
                 var dateCreated = $('#hidDateCreated').val();
                 var categoryId = $('#ddlCategoryIdM').combotree('getValue');
+                var authorId = $('#ddlAuthorIdM').combotree('getValue');
+                var publisherId = $('#ddlPublisherIdM').combotree('getValue');
 
                 var description = $('#txtDescM').val();
                 var unit = $('#txtUnitM').val();
@@ -190,6 +200,8 @@
                         Name: name,
                         DateCreated: dateCreated,
                         CategoryId: categoryId,
+                        AuthorId: authorId,
+                        PublisherId: publisherId,
                         Image: image,
                         Price: price,
                         OriginalPrice: originalPrice,
@@ -229,6 +241,7 @@
 
         $('#btn-import').on('click', function () {
             initTreeDropDownCategory();
+            initTreeDropDownAuthor();
             $('#modal-import-excel').modal('show');
         });
 
@@ -299,11 +312,69 @@
 
     }
 
+    function initTreeDropDownAuthor(selectedId) {
+        $.ajax({
+            url: "/Admin/Author/GetAll",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                var data = [];
+                $.each(response, function (i, item) {
+                    data.push({
+                        id: item.Id,
+                        text: item.AuthorName,
+                        parentId: item.ParentId,
+                        sortOrder: item.SortOrder
+                    });
+                });
+                var arr = tedu.unflattern(data);
+                $('#ddlAuthorIdM').combotree({
+                    data: arr
+                });
+
+                $('#ddlAuthorIdImportExcel').combotree({
+                    data: arr
+                });
+                if (selectedId != undefined) {
+                    $('#ddlAuthorIdM').combotree('setValue', selectedId);
+                }
+            }
+        });
+    }
 
 
 
+    function initTreeDropDownPublisher(selectedId) {
+        $.ajax({
+            url: "/Admin/Publisher/GetAll",
+            type: 'GET',
+            dataType: 'json',
+            async: false,
+            success: function (response) {
+                var data = [];
+                $.each(response, function (i, item) {
+                    data.push({
+                        id: item.Id,
+                        text: item.PublisherName,
+                        parentId: item.ParentId,
+                        sortOrder: item.SortOrder
+                    });
+                });
+                var arr = tedu.unflattern(data);
+                $('#ddlPublisherIdM').combotree({
+                    data: arr
+                });
 
-
+                $('#ddlPublisherIdImportExcel').combotree({
+                    data: arr
+                });
+                if (selectedId != undefined) {
+                    $('#ddlPublisherIdM').combotree('setValue', selectedId);
+                }
+            }
+        });
+    }
 
     function initTreeDropDownCategory(selectedId) {
         $.ajax({
@@ -340,6 +411,8 @@
         $('#hidIdM').val(0);
         $('#txtNameM').val('');
         initTreeDropDownCategory('');
+        initTreeDropDownAuthor();
+        initTreeDropDownPublisher();
 
         $('#txtDescM').val('');
         $('#txtUnitM').val('');
@@ -408,6 +481,8 @@
                         Name: item.Name,
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
                         CategoryName: item.ProductCategory.Name,
+                        AuthorName: item.Author.AuthorName,
+                        PublisherName: item.Publisher.PublisherName,
                         Price: tedu.formatNumber(item.Price, 0),
                         CreatedDate: moment(item.DateCreated).format("DD/MM/YYYY"),
                         Status: tedu.getStatus(item.Status)

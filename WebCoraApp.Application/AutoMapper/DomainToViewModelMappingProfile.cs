@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WebCoreApp.Application.Interfaces;
+using WebCoreApp.Application.ViewModels;
 using WebCoreApp.Application.ViewModels.Blog;
 using WebCoreApp.Application.ViewModels.Common;
 using WebCoreApp.Application.ViewModels.Product;
@@ -28,6 +29,9 @@ namespace WebCoreApp.Application.AutoMapper
             CreateMap<ProductQuantity, ProductQuantityViewModel>().MaxDepth(2);
             CreateMap<ProductImage, ProductImageViewModel>().MaxDepth(2);
             CreateMap<WholePrice, WholePriceViewModel>().MaxDepth(2);
+
+            CreateMap<Author, AuthorViewModel>();
+            CreateMap<Publisher, PublisherViewModel>();
 
             CreateMap<Blog, BlogViewModel>().MaxDepth(2);
             CreateMap<BlogTag, BlogTagViewModel>().MaxDepth(2);

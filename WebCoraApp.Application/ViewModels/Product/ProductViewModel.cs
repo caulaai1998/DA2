@@ -18,6 +18,10 @@ namespace WebCoreApp.Application.ViewModels.Product
         [Required]
         public int CategoryId { get; set; }
 
+        public int AuthorId { get; set; }
+
+        public int PublisherId { get; set; }
+
         [StringLength(255)]
         public string Image { get; set; }
 
@@ -50,6 +54,11 @@ namespace WebCoreApp.Application.ViewModels.Product
      
         public virtual ProductCategoryViewModel ProductCategory { set; get; }
 
+        public virtual AuthorViewModel Author { set; get; }
+
+        public virtual PublisherViewModel Publisher { set; get; }
+
+         
         public string SeoPageTitle { set; get; }
 
        

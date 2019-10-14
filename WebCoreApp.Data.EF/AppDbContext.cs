@@ -30,6 +30,9 @@ namespace WebCoreApp.Data.EF
         public DbSet<Announcement> Announcements { set; get; }
         public DbSet<AnnouncementUser> AnnouncementUsers { set; get; }
 
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<Publisher> Publishers { get; set; }
+
         public DbSet<Blog> Bills { set; get; }
         public DbSet<BillDetail> BillDetails { set; get; }
         public DbSet<Blog> Blogs { set; get; }

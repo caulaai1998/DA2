@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using WebCoreApp.Application.ViewModels;
 using WebCoreApp.Application.ViewModels.Blog;
 using WebCoreApp.Application.ViewModels.Common;
 using WebCoreApp.Application.ViewModels.Product;
@@ -19,7 +20,7 @@ namespace WebCoreApp.Application.AutoMapper
                  c.SortOrder, c.Status, c.SeoPageTitle, c.SeoAlias, c.SeoKeywords, c.SeoDescription));
 
             CreateMap<ProductViewModel, Product>()
-           .ConstructUsing(c => new Product(c.Name, c.CategoryId, c.Image, c.Price, c.OriginalPrice,
+           .ConstructUsing(c => new Product(c.Name, c.CategoryId,c.AuthorId,c.PublisherId, c.Image, c.Price, c.OriginalPrice,
            c.PromotionPrice, c.Description, c.Content, c.HomeFlag, c.HotFlag, c.Tags, c.Unit, c.Status,
            c.SeoPageTitle, c.SeoAlias, c.SeoKeywords, c.SeoDescription));
 
@@ -30,7 +31,13 @@ namespace WebCoreApp.Application.AutoMapper
             CreateMap<PermissionViewModel, Permission>()
             .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.CanCreate, c.CanRead, c.CanUpdate, c.CanDelete));
 
+            CreateMap<AuthorViewModel, Author>()
+                .ConstructUsing(c => new Author(c.AuthorName, c.Description, c.ParentId, c.HomeOrder, c.HomeFlag,
+                 c.SortOrder, c.Status));
 
+            CreateMap<PublisherViewModel, Publisher>()
+                .ConstructUsing(c => new Publisher(c.PublisherName, c.Description, c.ParentId, c.HomeOrder, c.HomeFlag,
+                 c.SortOrder, c.Status));
 
             CreateMap<BillViewModel, Bill>()
               .ConstructUsing(c => new Bill(c.Id, c.CustomerName, c.CustomerAddress,

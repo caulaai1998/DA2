@@ -172,13 +172,16 @@ namespace WebCoreApp
             services.AddTransient<IBlogRepository, BlogRepository>();
             services.AddTransient<IPageRepository, PageRepository>();
             services.AddTransient<IReportService, ReportService>();
-
+           
             services.AddTransient<IBlogTagRepository, BlogTagRepository>();
             services.AddTransient<ISlideRepository, SlideRepository>();
             services.AddTransient<ISystemConfigRepository, SystemConfigRepository>();
 
             services.AddTransient<IFooterRepository, FooterRepository>();
 
+
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IPublisherCompanyRepository, PublisherCompanyRepository>();
 
             //Serrvices
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
@@ -193,6 +196,9 @@ namespace WebCoreApp
             services.AddTransient<IContactService, ContactService>();
             services.AddTransient<IPageService, PageService>();
             services.AddTransient<IReportService, ReportService>();
+
+            services.AddTransient<IAuthorService, AuthorService>();
+            services.AddTransient<IPublisherService, PublisherService>();
 
             services.AddTransient<IAuthorizationHandler, BaseResourceAuthorizationHandler>();
 

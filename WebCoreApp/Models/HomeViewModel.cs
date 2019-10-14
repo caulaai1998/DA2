@@ -14,7 +14,6 @@ namespace WebCoreApp.Models
         public List<SlideViewModel> HomeSlides { get; set; }
         public List<ProductViewModel> HotProducts { get; set; }
         public List<ProductViewModel> TopSellProducts { get; set; }
-
         public List<ProductCategoryViewModel> HomeCategories { set; get; }
 
         public string Title { set; get; }

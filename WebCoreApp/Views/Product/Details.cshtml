@@ -6,6 +6,7 @@
     ViewData["MetaDescription"] = Model.Product.SeoDescription;
     var category = Model.Category;
     var product = Model.Product;
+
 }
 <!-- Breadcrumbs -->
 @section Scripts{
@@ -80,29 +81,13 @@
 
                         </div>
                         <div class="ratings">
-                            <div class="rating"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i> <i class="fa fa-star-o"></i> </div>
-                            <p class="rating-links"> <a href="#">1 Review(s)</a> <span class="separator">|</span> <a href="#">@Localizer["AddYourReview"]</a> </p>
                             <p class="availability @(product.Status==WebCoreApp.Data.Enums.Status.Active?"in-stock":"out-of-stock") pull-right">Availability: <span>@product.Status</span></p>
                         </div>
                         <div class="short-description">
                             <h2>@Localizer["QuickOverview"]</h2>
                             @product.Description
                         </div>
-                        <div class="product-color-size-area">
-                            <div class="color-area">
-                                <h2 class="saider-bar-title">@Localizer["Color"]</h2>
-                                <div class="color">
-                                    <select asp-items="Model.Colors" id="ddlColorId"></select>
-                                </div>
-                            </div>
-                            <div class="size-area">
-                                <h2 class="saider-bar-title">@Localizer["Size"]</h2>
-                                <div class="size">
-                                    <select asp-items="Model.Sizes" id="ddlSizeId"></select>
-
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="product-variation">
                             <form action="#" method="post">
                                 <div class="cart-plus-minus">

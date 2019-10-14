@@ -17,7 +17,7 @@ namespace WebCoreApp.Models.ProductViewModels
 
         public List<ProductViewModel> RelatedProducts { get; set; }
 
-        public ProductCategoryViewModel Category { get; set; }
+        public ProductCategoryViewModel Category { get; set; }z
 
         public List<ProductImageViewModel> ProductImages { set; get; }
 
