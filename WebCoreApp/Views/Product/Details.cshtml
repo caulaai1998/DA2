@@ -6,7 +6,7 @@
     ViewData["MetaDescription"] = Model.Product.SeoDescription;
     var category = Model.Category;
     var product = Model.Product;
-
+    var author = Model.Author;
 }
 <!-- Breadcrumbs -->
 @section Scripts{
@@ -81,6 +81,7 @@
 
                         </div>
                         <div class="ratings">
+                            <p>Tên tác giả: </p>@author.AuthorName
                             <p class="availability @(product.Status==WebCoreApp.Data.Enums.Status.Active?"in-stock":"out-of-stock") pull-right">Availability: <span>@product.Status</span></p>
                         </div>
                         <div class="short-description">

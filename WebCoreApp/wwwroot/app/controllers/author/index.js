@@ -18,33 +18,7 @@
             initTreeDropDownCategory();
             $('#modal-add-edit').modal('show');
         });
-        $('#btnSelectImg').on('click', function () {
-            $('#fileInputImage').click();
-        });
-
-        $("#fileInputImage").on('change', function () {
-            var fileUpload = $(this).get(0);
-            var files = fileUpload.files;
-            var data = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                data.append(files[i].name, files[i]);
-            }
-            $.ajax({
-                type: "POST",
-                url: "/Admin/Upload/UploadImage",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (path) {
-                    $('#txtImage').val(path);
-                    tedu.notify('Upload image succesful!', 'success');
-
-                },
-                error: function () {
-                    tedu.notify('There was error uploading files!', 'error');
-                }
-            });
-        });
+     
 
         $('body').on('click', '#btnEdit', function (e) {
             e.preventDefault();
@@ -63,13 +37,11 @@
                     $('#txtNameM').val(data.AuthorName);
                     initTreeDropDownCategory(data.CategoryId);
 
-                    $('#txtDescM').val(data.Description);
                     
                     $('#ckStatusM').prop('checked', data.Status == 1);
                     $('#ckShowHomeM').prop('checked', data.HomeFlag);
                     $('#txtOrderM').val(data.SortOrder);
                     $('#txtHomeOrderM').val(data.HomeOrder);
-
                     $('#modal-add-edit').modal('show');
                     tedu.stopLoading();
 
@@ -112,10 +84,8 @@
                 var id = parseInt($('#hidIdM').val());
                 var name = $('#txtNameM').val();
                 var parentId = $('#ddlCategoryIdM').combotree('getValue');
-                var description = $('#txtDescM').val();
                 
                 var order = parseInt($('#txtOrderM').val());
-                var homeOrder = $('#txtHomeOrderM').val();
                 
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
                 var showHome = $('#ckShowHomeM').prop('checked');
@@ -126,9 +96,7 @@
                     data: {
                         Id: id,
                         AuthorName: name,
-                        Description: description,
                         ParentId: parentId,
-                        HomeOrder: homeOrder,
                         SortOrder: order,
                         HomeFlag: showHome,
                         Status: status,
@@ -163,7 +131,6 @@
 
         $('#txtDescM').val('');
         $('#txtOrderM').val('');
-        $('#txtHomeOrderM').val('');
         $('#ckStatusM').prop('checked', true);
         $('#ckShowHomeM').prop('checked', false);
     }
@@ -214,7 +181,7 @@
                 });
                 //var $tree = $('#treeProductCategory');
 
-                $('#treeCategory').tree({
+                $('#treeAuthor').tree({
                     data: treeArr,
                     dnd: true,
                     onContextMenu: function (e, node) {

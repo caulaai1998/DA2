@@ -15,36 +15,29 @@ namespace WebCoreApp.Data.Entities
 
         }
 
-        public Publisher(string publisherName, string description, int? parentId, int? homeOrder,
-             bool? homeFlag, int sortOrder, Status status
-            )
+        public Publisher(string name, int? parentId, int sortOrder, Status status)
         {
-            PublisherName = publisherName;
-            Description = description;
+            NamePublisher = name;
             ParentId = parentId;
-            HomeOrder = homeOrder;
-            HomeFlag = homeFlag;
             SortOrder = sortOrder;
             Status = status;
-
         }
 
-        public string PublisherName { get; set; }
+        public Publisher(int id, string name, int? parentId, int sortOrder, Status status)
+        {
+            Id = id;
+            NamePublisher = name;
+            ParentId = parentId;
+            SortOrder = sortOrder;
+            Status = status;
+        }
 
-        public string Description { get; set; }
-
+        public string NamePublisher { get; set; }
         public int? ParentId { get; set; }
+        public int SortOrder { get; set; }
 
-        public int? HomeOrder { get; set; }
+        public Status Status { get; set; }
 
-
-        public bool? HomeFlag { get; set; }
-
-        public DateTime DateCreated { set; get; }
-        public DateTime DateModified { set; get; }
-        public int SortOrder { set; get; }
-        public Status Status { set; get; }
-
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }  
     }
 }

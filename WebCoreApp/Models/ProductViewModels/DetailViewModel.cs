@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebCoreApp.Application.Interfaces;
+using WebCoreApp.Application.ViewModels;
 using WebCoreApp.Application.ViewModels.Common;
 using WebCoreApp.Application.ViewModels.Product;
 
@@ -18,6 +19,10 @@ namespace WebCoreApp.Models.ProductViewModels
         public List<ProductViewModel> RelatedProducts { get; set; }
 
         public ProductCategoryViewModel Category { get; set; }
+
+        public AuthorViewModel Author { get; set; }
+
+        public PublisherViewModel Publisher { get; set; }
 
         public List<ProductImageViewModel> ProductImages { set; get; }
 

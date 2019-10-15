@@ -292,16 +292,6 @@ namespace WebCoreApp.Data.EF.Migrations
 
                     b.Property<string>("AuthorName");
 
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool?>("HomeFlag");
-
-                    b.Property<int?>("HomeOrder");
-
                     b.Property<int?>("ParentId");
 
                     b.Property<int>("SortOrder");
@@ -832,19 +822,9 @@ namespace WebCoreApp.Data.EF.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("DateCreated");
-
-                    b.Property<DateTime>("DateModified");
-
-                    b.Property<string>("Description");
-
-                    b.Property<bool?>("HomeFlag");
-
-                    b.Property<int?>("HomeOrder");
+                    b.Property<string>("NamePublisher");
 
                     b.Property<int?>("ParentId");
-
-                    b.Property<string>("PublisherName");
 
                     b.Property<int>("SortOrder");
 

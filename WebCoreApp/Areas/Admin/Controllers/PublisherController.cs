@@ -21,8 +21,10 @@ namespace WebCoreApp.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
+            ViewData["sortOrder"] = _publisherService.GetAll();
             return View();
         }
+
         #region Get Data API
 
         [HttpGet]

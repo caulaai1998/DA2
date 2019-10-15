@@ -32,12 +32,10 @@ namespace WebCoreApp.Application.AutoMapper
             .ConstructUsing(c => new Permission(c.RoleId, c.FunctionId, c.CanCreate, c.CanRead, c.CanUpdate, c.CanDelete));
 
             CreateMap<AuthorViewModel, Author>()
-                .ConstructUsing(c => new Author(c.AuthorName, c.Description, c.ParentId, c.HomeOrder, c.HomeFlag,
-                 c.SortOrder, c.Status));
+                .ConstructUsing(c => new Author(c.Id, c.AuthorName, c.ParentId, c.SortOrder, c.Status));
 
             CreateMap<PublisherViewModel, Publisher>()
-                .ConstructUsing(c => new Publisher(c.PublisherName, c.Description, c.ParentId, c.HomeOrder, c.HomeFlag,
-                 c.SortOrder, c.Status));
+                .ConstructUsing(c => new Publisher(c.Id, c.PublisherName, c.ParentId, c.SortOrder, c.Status));
 
             CreateMap<BillViewModel, Bill>()
               .ConstructUsing(c => new Bill(c.Id, c.CustomerName, c.CustomerAddress,

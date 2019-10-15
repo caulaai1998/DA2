@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebCoreApp.Application.Interfaces;
 using WebCoreApp.Models.ProductViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,13 +12,17 @@ namespace WebCoreApp.Controllers
         IProductService _productService;
         IBillService _billService;
         IProductCategoryService _productCategoryService;
+        IAuthorService _authorService;
+        IPublisherService _publisherService;
         IConfiguration _configuration;
         public ProductController(IProductService productService, IConfiguration configuration, 
-            IBillService billService, 
+            IBillService billService, IAuthorService authorService, IPublisherService publisherService,
             IProductCategoryService productCategoryService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _authorService = authorService;
+            _publisherService = publisherService;
             _configuration = configuration;
             _billService = billService;
         }
@@ -69,8 +70,14 @@ namespace WebCoreApp.Controllers
         {
             ViewData["BodyClass"] = "product-page";
             var model = new DetailViewModel();
+           
             model.Product = _productService.GetById(id);
+           
             model.Category = _productCategoryService.GetById(model.Product.CategoryId);
+           
+            model.Author = _authorService.GetById(model.Product.AuthorId);
+            //model.Author = vm;
+            //model.Publisher = _publisherService.GetById(model.Product.PublisherId);
             model.RelatedProducts = _productService.GetRelatedProducts(id, 9);
             model.UpsellProducts = _productService.GetUpsellProducts(6);
             model.ProductImages = _productService.GetImages(id);

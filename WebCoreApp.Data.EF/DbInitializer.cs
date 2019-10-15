@@ -191,8 +191,8 @@ namespace WebCoreApp.Data.EF
             {
                 List<Publisher> listPublisher = new List<Publisher>()
                 {
-                    new Publisher() {PublisherName="Kim Đồng", SortOrder = 1, ParentId=null, Status = Status.Active},
-                    new Publisher() {PublisherName="NXB Lao động", SortOrder = 2, ParentId=null, Status = Status.Active},
+                    new Publisher() {NamePublisher="Kim Đồng", SortOrder = 1, ParentId=null, Status = Status.Active},
+                    new Publisher() {NamePublisher="NXB Lao động", SortOrder = 2, ParentId=null, Status = Status.Active},
                 };
                 _context.Publishers.AddRange(listPublisher);
             }
