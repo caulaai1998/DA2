@@ -356,7 +356,7 @@
                 $.each(response, function (i, item) {
                     data.push({
                         id: item.Id,
-                        text: item.PublisherName,
+                        text: item.NamePublisher,
                         parentId: item.ParentId,
                         sortOrder: item.SortOrder
                     });
@@ -482,7 +482,7 @@
                         Image: item.Image == null ? '<img src="/admin-side/images/user.png" width=25' : '<img src="' + item.Image + '" width=25 />',
                         CategoryName: item.ProductCategory.Name,
                         AuthorName: item.Author.AuthorName,
-                        PublisherName: item.Publisher.PublisherName,
+                        NamePublisher: item.Publisher.NamePublisher,
                         Price: tedu.formatNumber(item.Price, 0),
                         CreatedDate: moment(item.DateCreated).format("DD/MM/YYYY"),
                         Status: tedu.getStatus(item.Status)

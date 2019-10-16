@@ -15,36 +15,10 @@
         });
 
         $('#btnCreate').off('click').on('click', function () {
-            initTreeDropDownCategory();
+            initTreeDropDownPublisher();
             $('#modal-add-edit').modal('show');
         });
-        $('#btnSelectImg').on('click', function () {
-            $('#fileInputImage').click();
-        });
-
-        $("#fileInputImage").on('change', function () {
-            var fileUpload = $(this).get(0);
-            var files = fileUpload.files;
-            var data = new FormData();
-            for (var i = 0; i < files.length; i++) {
-                data.append(files[i].name, files[i]);
-            }
-            $.ajax({
-                type: "POST",
-                url: "/Admin/Upload/UploadImage",
-                contentType: false,
-                processData: false,
-                data: data,
-                success: function (path) {
-                    $('#txtImage').val(path);
-                    tedu.notify('Upload image succesful!', 'success');
-
-                },
-                error: function () {
-                    tedu.notify('There was error uploading files!', 'error');
-                }
-            });
-        });
+     
 
         $('body').on('click', '#btnEdit', function (e) {
             e.preventDefault();
@@ -60,16 +34,11 @@
                 success: function (response) {
                     var data = response;
                     $('#hidIdM').val(data.Id);
-                    $('#txtNameM').val(data.PublisherName);
-                    initTreeDropDownCategory(data.CategoryId);
-
-                    $('#txtDescM').val(data.Description);
-
+                    $('#txtNameM').val(data.NamePublisher);
+                    initTreeDropDownPublisher(data.CategoryId);
                     $('#ckStatusM').prop('checked', data.Status == 1);
                     $('#ckShowHomeM').prop('checked', data.HomeFlag);
                     $('#txtOrderM').val(data.SortOrder);
-                    $('#txtHomeOrderM').val(data.HomeOrder);
-
                     $('#modal-add-edit').modal('show');
                     tedu.stopLoading();
 
@@ -112,11 +81,7 @@
                 var id = parseInt($('#hidIdM').val());
                 var name = $('#txtNameM').val();
                 var parentId = $('#ddlCategoryIdM').combotree('getValue');
-                var description = $('#txtDescM').val();
-
                 var order = parseInt($('#txtOrderM').val());
-                var homeOrder = $('#txtHomeOrderM').val();
-
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
                 var showHome = $('#ckShowHomeM').prop('checked');
 
@@ -125,10 +90,8 @@
                     url: "/Admin/Publisher/SaveEntity",
                     data: {
                         Id: id,
-                        PublisherName: name,
-                        Description: description,
+                        NamePublisher: name,
                         ParentId: parentId,
-                        HomeOrder: homeOrder,
                         SortOrder: order,
                         HomeFlag: showHome,
                         Status: status,
@@ -159,15 +122,12 @@
     function resetFormMaintainance() {
         $('#hidIdM').val(0);
         $('#txtNameM').val('');
-        initTreeDropDownCategory('');
-
-        $('#txtDescM').val('');
+        initTreeDropDownPublisher('');
         $('#txtOrderM').val('');
-        $('#txtHomeOrderM').val('');
         $('#ckStatusM').prop('checked', true);
         $('#ckShowHomeM').prop('checked', false);
     }
-    function initTreeDropDownCategory(selectedId) {
+    function initTreeDropDownPublisher(selectedId) {
         $.ajax({
             url: "/Admin/Publisher/GetAll",
             type: 'GET',
@@ -178,7 +138,7 @@
                 $.each(response, function (i, item) {
                     data.push({
                         id: item.Id,
-                        text: item.PublisherName,
+                        text: item.NamePublisher,
                         parentId: item.ParentId,
                         sortOrder: item.SortOrder
                     });
@@ -202,7 +162,7 @@
                 $.each(response, function (i, item) {
                     data.push({
                         id: item.Id,
-                        text: item.PublisherName,
+                        text: item.NamePublisher,
                         parentId: item.ParentId,
                         sortOrder: item.SortOrder
                     });

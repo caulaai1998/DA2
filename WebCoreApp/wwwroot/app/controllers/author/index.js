@@ -84,7 +84,6 @@
                 var id = parseInt($('#hidIdM').val());
                 var name = $('#txtNameM').val();
                 var parentId = $('#ddlCategoryIdM').combotree('getValue');
-                
                 var order = parseInt($('#txtOrderM').val());
                 
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
@@ -128,8 +127,7 @@
         $('#hidIdM').val(0);
         $('#txtNameM').val('');
         initTreeDropDownCategory('');
-
-        $('#txtDescM').val('');
+        
         $('#txtOrderM').val('');
         $('#ckStatusM').prop('checked', true);
         $('#ckShowHomeM').prop('checked', false);

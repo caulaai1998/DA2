@@ -68,7 +68,6 @@ namespace WebCoreApp.Controllers
         [Route("{alias}-p.{id}.html", Name = "ProductDetail")]
         public IActionResult Details(int id)
         {
-            ViewData["BodyClass"] = "product-page";
             var model = new DetailViewModel();
            
             model.Product = _productService.GetById(id);

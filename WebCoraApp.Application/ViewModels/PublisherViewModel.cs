@@ -10,19 +10,11 @@ namespace WebCoreApp.Application.ViewModels
     {
         public int Id { get; set; }
 
-        public string PublisherName { get; set; }
-
-        public string Description { get; set; }
-
+        public string NamePublisher { get; set; }
         public int? ParentId { get; set; }
 
-        public int? HomeOrder { get; set; }
-        public bool? HomeFlag { get; set; }
-
-        public DateTime DateCreated { set; get; }
-        public DateTime DateModified { set; get; }
-        public int SortOrder { set; get; }
-        public Status Status { set; get; }
+        public int SortOrder { get; set; }
+        public Status Status { get; set; }
 
         public virtual ICollection<ProductViewModel> Products { get; set; }
     }
