@@ -19,6 +19,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Localization" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
+    <PackageReference Include="PayPal" Version="1.9.1" />
     <PackageReference Include="SkiaSharp" Version="1.59.3" />
     <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.4.2" />
     <PackageReference Include="WebMarkupMin.NUglify" Version="2.4.2" />

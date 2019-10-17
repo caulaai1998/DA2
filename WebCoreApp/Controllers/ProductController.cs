@@ -65,6 +65,24 @@ namespace WebCoreApp.Controllers
 
             return View(catalog);
         }
+
+        [Produces("application/json")]
+        [HttpGet]
+        public IActionResult GetProductForAutocomplete()
+        {
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var model = _productService.GetAll().Where(p => p.Name.ToLower().Contains(term) || p.Author.AuthorName.ToLower().Contains(term)).Select(p => p.Name).ToList();
+                return Ok(model);
+            }
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+
         [Route("{alias}-p.{id}.html", Name = "ProductDetail")]
         public IActionResult Details(int id)
         {
@@ -74,7 +92,7 @@ namespace WebCoreApp.Controllers
            
             model.Category = _productCategoryService.GetById(model.Product.CategoryId);
            
-            model.Author = _authorService.GetById(model.Product.AuthorId);
+          //  model.Author = _authorService.GetById(model.Product.AuthorId);
             //model.Author = vm;
             //model.Publisher = _publisherService.GetById(model.Product.PublisherId);
             model.RelatedProducts = _productService.GetRelatedProducts(id, 9);
